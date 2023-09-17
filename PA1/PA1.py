@@ -80,19 +80,47 @@ def runTest(args, terrain = None) :
 # Fritz Sieker 
 
 def naive(image,h,angle,N,shade):
+    tangentAngle = math.tan(angle)
+    for i in range(N) :
+        R = image[i]
+        for j in range (N) :
+            for k in range (j) :
+                temp = compare(tangentAngle, (R[k] - R[j]) / (h * (j - k)))
+                if shade[i][j] == False :
+                    shade[i][j] = temp
     
 ###### Complete this function
 
     return shade
 
 def earlyexit(image,h,angle, N, shade):
-    
+    tangentAngle = math.tan(angle)
+    for i in range(N) :
+        R = image[i]
+        for j in range (N) :
+            for k in range (j) :
+                if(compare(tangentAngle, (R[k] - R[j]) / (h * (j - k)))) :
+                    shade[i][j] = True
+                    break
 ###### Complete this function
 
     return shade
 
 def fast(image,h,angle, N, shade):
-
+    tangentAngle = math.tan(angle)
+    for i in range(N) :
+        R = image[i]
+        maxVal = R[0]
+        maxValIndex = 0
+        for j in range (N) :
+            if compare((R[j] + h * j * tangentAngle), (maxVal + h * maxValIndex * tangentAngle)) :
+                shade[i][j] = True
+            else :
+                maxVal = R[j]
+                maxValIndex = j
+        # j is sunny if for every k: 0 less than or equal to k less than j
+        # (R[j] + h * j * tangentAngle) greater than or equal to (max[0 less than or rqual to k  less than j] + h * k * tangentAngle)
+            
 ###### Complete this function
     
     return shade
