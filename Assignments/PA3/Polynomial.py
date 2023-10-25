@@ -34,6 +34,8 @@ class Polynomial:
 
         add_coef=[]
         # STUDENT_CODE: Implement addition for two polynomials of the same length
+        for i in range(len(self)) :
+            add_coef[i] = self[i] + other[i]
         
         return self.__class__(add_coef)
 
@@ -46,6 +48,8 @@ class Polynomial:
     
         sub_coef=[]
         # STUDENT_CODE: Implement subtraction for two polynomials of the same length
+        for i in range(len(self)) :
+            sub_coef[i] = self[i] - other[i]
 
         return self.__class__(sub_coef)
  
