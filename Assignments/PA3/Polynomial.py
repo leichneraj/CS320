@@ -64,6 +64,7 @@ class Polynomial:
             base_coef=[]
             
             # STUDENT_CODE: implement base case
+            base_coef = self.convolution(other).coef
 
             return self.__class__(base_coef)
 
@@ -77,6 +78,10 @@ class Polynomial:
         d_coef=[]
 
         # STUDENT_CODE: assign the correct values to {a,b,c,d}_coef
+        a_coef = self[:half]
+        b_coef = self[half:]
+        c_coef = other[:half]
+        d_coef = other[half:]
 
         a=self.__class__(a_coef)
         b=self.__class__(b_coef)
@@ -85,7 +90,7 @@ class Polynomial:
 
         # STUDENT_CODE: implement Karatsuba's algorithm using a,b,c,d
         
-        mul_coef_len=0 # STUDENT_CODE: replace with the correct mul_coef_len
+        mul_coef_len=n** -1 # STUDENT_CODE: replace with the correct mul_coef_len
 
         mul_coef=[self.__class__.zero for i in range(mul_coef_len)]
 
