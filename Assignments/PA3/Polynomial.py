@@ -34,8 +34,8 @@ class Polynomial:
 
         add_coef=[]
         # STUDENT_CODE: Implement addition for two polynomials of the same length
-        for i in range(len(self)) :
-            add_coef[i] = self[i] + other[i]
+        for i in range(self.n) :
+            add_coef.append(self[i] + other[i])
         
         return self.__class__(add_coef)
 
@@ -48,8 +48,8 @@ class Polynomial:
     
         sub_coef=[]
         # STUDENT_CODE: Implement subtraction for two polynomials of the same length
-        for i in range(len(self)) :
-            sub_coef[i] = self[i] - other[i]
+        for i in range(self.n) :
+            sub_coef.append(self[i] - other[i])
 
         return self.__class__(sub_coef)
  
@@ -90,14 +90,20 @@ class Polynomial:
 
         # STUDENT_CODE: implement Karatsuba's algorithm using a,b,c,d
 
-        
+        ac = a * c
+        bd = b * d
+        bcad = (a + b) * (c + d) - ac - bd
 
         # STUDENT_CODE: replace with the correct mul_coef_len
-        mul_coef_len=2 * n - 1 
+        mul_coef_len = 2 * n - 1 
 
         mul_coef=[self.__class__.zero for i in range(mul_coef_len)]
 
         # STUDENT_CODE: combine results of Karatsuba's algorithm to compute mul_coef
+        for i in range(ac.n) :
+            mul_coef[i] += ac[i]
+            mul_coef[half + i] += bcad[i]
+            mul_coef[mul_coef_len - ac.n + i] += bd[i]
             
         return self.__class__(mul_coef)
 
