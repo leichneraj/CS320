@@ -64,7 +64,7 @@ class Polynomial:
             base_coef=[]
             
             # STUDENT_CODE: implement base case
-            base_coef = [self[0] * other[0]];
+            base_coef = [self[0] * other[0]]
 
             return self.__class__(base_coef)
 
